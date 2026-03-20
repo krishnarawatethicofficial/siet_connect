@@ -29,4 +29,3 @@ services:
     envVars:
       - key: VITE_API_URL
         value: https://siet-connect-backend.onrender.com/api
-        sync: false
