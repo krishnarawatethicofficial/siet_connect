@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: siet-connect-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: UPSTASH_REDIS_URL
+        sync: false
+      - key: UPSTASH_REDIS_TOKEN
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+    routes:
+      - path: /api
+        destination: /api
+    previewPlanName: free
+
+  - type: static
+    name: siet-connect-frontend
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://siet-connect-backend.onrender.com/api
+        sync: false
+    routes:
+      - path: /
+        destination: /
+
+databases:
+  - name: siet-connect-db
+    engine: mongodb
+    plan: free
