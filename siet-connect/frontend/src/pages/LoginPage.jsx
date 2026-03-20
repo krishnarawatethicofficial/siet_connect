@@ -16,14 +16,14 @@ const LoginPage = () => {
     e.preventDefault();
     setError("");
     if (!form.email || !form.password) {
-      setError("Please fill in all fields");
+      setError("Please enter email and password");
       return;
     }
     try {
       await login(form);
-      toast.success("Welcome back!");
+      toast.success("Welcome back! 🎉");
     } catch (err) {
-      setError(err?.response?.data?.message || "Sign-in failed. Please try again.");
+      setError("Login failed. Try again.");
     }
   };
 

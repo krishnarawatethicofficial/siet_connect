@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mail, Lock, User, IdCard, Hash, Eye, EyeOff, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, Layers, Hash, Eye, EyeOff, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 import useAuthStore from "../store/authStore.js";
 
@@ -19,18 +19,14 @@ const SignupPage = () => {
     e.preventDefault();
     setError("");
     if (!form.name || !form.email || !form.password || !form.studentId) {
-      setError("Please fill in all required fields");
-      return;
-    }
-    if (form.password.length < 6) {
-      setError("Password must be at least 6 characters");
+      setError("Please fill in all fields");
       return;
     }
     try {
       await signup(form);
-      toast.success("Account created! Welcome to SIET Connect");
+      toast.success("Account created! 🎓");
     } catch (err) {
-      setError(err?.response?.data?.message || "Sign-up failed. Please try again.");
+      setError("Signup failed. Try again.");
     }
   };
 
@@ -103,7 +99,7 @@ const SignupPage = () => {
             <div className="form-control mb-3">
               <label htmlFor="studentId" className="label py-1">
                 <span className="label-text font-medium flex items-center gap-1.5 text-gray-300">
-                  <IdCard size={14} aria-hidden="true" /> Student / Employee ID <span className="text-rose-400">*</span>
+                  <Layers size={14} aria-hidden="true" /> Student / Employee ID <span className="text-rose-400">*</span>
                 </span>
               </label>
               <input
@@ -147,11 +143,10 @@ const SignupPage = () => {
                   id="signup-password"
                   type={showPw ? "text" : "password"}
                   className="input input-bordered w-full rounded-xl pr-12 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-teal-400/50"
-                  placeholder="Min 6 characters"
+                  placeholder="Any password"
                   value={form.password}
                   onChange={(e) => update("password", e.target.value)}
                   required
-                  minLength={6}
                 />
                 <button
                   type="button"
