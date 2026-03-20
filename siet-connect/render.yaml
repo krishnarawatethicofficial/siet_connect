@@ -27,7 +27,7 @@ services:
     name: siet-connect-frontend
     env: static
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist
+    publishDirectory: frontend/dist
     envVars:
       - key: VITE_API_URL
         value: https://siet-connect-backend.onrender.com/api
