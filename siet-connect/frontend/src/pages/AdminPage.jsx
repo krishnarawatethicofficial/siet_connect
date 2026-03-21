@@ -18,9 +18,19 @@ const toSlug = (t) => t.toLowerCase();
 const AdminPage = () => {
   const { tab } = useParams();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(tabSlugs[tab] || "Overview");
+  
+  const [activeTab, setActiveTab] = useState(() => {
+    if (tab && tabSlugs[tab]) return tabSlugs[tab];
+    return "Overview";
+  });
 
-  useEffect(() => { if (tab && tabSlugs[tab]) setActiveTab(tabSlugs[tab]); }, [tab]);
+  useEffect(() => {
+    if (tab && tabSlugs[tab]) {
+      setActiveTab(tabSlugs[tab]);
+    } else if (!tab) {
+      navigate(`/admin/${toSlug("Overview")}`, { replace: true });
+    }
+  }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/admin/${toSlug(t)}`, { replace: true }); };
   const [stats, setStats] = useState(null);
   const [users, setUsers] = useState([]);

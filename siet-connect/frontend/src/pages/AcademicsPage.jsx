@@ -46,12 +46,22 @@ const AcademicsPage = () => {
   const { user } = useAuthStore();
   const { tab } = useParams();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(tabSlugs[tab] || "PYQs");
+  
+  // Initialize activeTab from URL param or default to first tab
+  const [activeTab, setActiveTab] = useState(() => {
+    if (tab && tabSlugs[tab]) return tabSlugs[tab];
+    return "PYQs";
+  });
 
-  // Sync tab from URL
+  // Sync tab from URL - improved to handle all cases
   useEffect(() => {
-    if (tab && tabSlugs[tab]) setActiveTab(tabSlugs[tab]);
-  }, [tab]);
+    if (tab && tabSlugs[tab]) {
+      setActiveTab(tabSlugs[tab]);
+    } else if (!tab) {
+      // No tab in URL, navigate to default
+      navigate(`/academics/${toSlug("PYQs")}`, { replace: true });
+    }
+  }, [tab, navigate]);
 
   const switchTab = (t) => {
     setActiveTab(t);

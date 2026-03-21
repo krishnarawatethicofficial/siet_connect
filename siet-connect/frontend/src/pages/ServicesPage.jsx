@@ -62,9 +62,19 @@ const faqs = [
 const ServicesPage = () => {
   const { tab } = useParams();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(tabSlugs[tab] || "Documents");
+  
+  const [activeTab, setActiveTab] = useState(() => {
+    if (tab && tabSlugs[tab]) return tabSlugs[tab];
+    return "Documents";
+  });
 
-  useEffect(() => { if (tab && tabSlugs[tab]) setActiveTab(tabSlugs[tab]); }, [tab]);
+  useEffect(() => {
+    if (tab && tabSlugs[tab]) {
+      setActiveTab(tabSlugs[tab]);
+    } else if (!tab) {
+      navigate(`/services/${toSlug("Documents")}`, { replace: true });
+    }
+  }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/services/${toSlug(t)}`, { replace: true }); };
   const [myDocs, setMyDocs] = useState([]);
   const [loading, setLoading] = useState(false);

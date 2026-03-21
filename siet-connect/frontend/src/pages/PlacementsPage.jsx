@@ -18,9 +18,19 @@ const toSlug = (t) => t.toLowerCase().replace(/ /g, "-");
 const PlacementsPage = () => {
   const { tab } = useParams();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(tabSlugs[tab] || "Opportunities");
+  
+  const [activeTab, setActiveTab] = useState(() => {
+    if (tab && tabSlugs[tab]) return tabSlugs[tab];
+    return "Opportunities";
+  });
 
-  useEffect(() => { if (tab && tabSlugs[tab]) setActiveTab(tabSlugs[tab]); }, [tab]);
+  useEffect(() => {
+    if (tab && tabSlugs[tab]) {
+      setActiveTab(tabSlugs[tab]);
+    } else if (!tab) {
+      navigate(`/placements/${toSlug("Opportunities")}`, { replace: true });
+    }
+  }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/placements/${toSlug(t)}`, { replace: true }); };
   const [placements, setPlacements] = useState([]);
   const [stats, setStats] = useState(null);

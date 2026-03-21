@@ -49,9 +49,19 @@ const canteenMenu = [
 const CampusPage = () => {
   const { tab } = useParams();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(tabSlugs[tab] || "Events");
+  
+  const [activeTab, setActiveTab] = useState(() => {
+    if (tab && tabSlugs[tab]) return tabSlugs[tab];
+    return "Events";
+  });
 
-  useEffect(() => { if (tab && tabSlugs[tab]) setActiveTab(tabSlugs[tab]); }, [tab]);
+  useEffect(() => {
+    if (tab && tabSlugs[tab]) {
+      setActiveTab(tabSlugs[tab]);
+    } else if (!tab) {
+      navigate(`/campus/${toSlug("Events")}`, { replace: true });
+    }
+  }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/campus/${toSlug(t)}`, { replace: true }); };
 
   return (
