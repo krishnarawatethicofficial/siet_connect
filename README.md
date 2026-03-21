@@ -104,7 +104,7 @@ siet-connect/
 Create `backend/.env`:
 
 ```env
-MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/siet-connect
+MONGO_URI=<your-mongodb-connection-string>
 JWT_SECRET=your_secret_here
 PORT=5000
 CLIENT_URL=http://localhost:5173

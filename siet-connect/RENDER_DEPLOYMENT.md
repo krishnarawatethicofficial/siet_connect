@@ -15,7 +15,7 @@
 ### MongoDB (for main database)
 1. Go to MongoDB Atlas (https://www.mongodb.com/cloud/atlas)
 2. Create a free cluster
-3. Get connection string: `mongodb+srv://username:password@cluster.mongodb.net/siet_connect`
+3. Get connection string: `<your-mongodb-connection-string>`
 
 ### Upstash (for Redis - already configured in your project)
 1. Go to https://upstash.com
@@ -52,7 +52,7 @@ Add these in Render Dashboard under Environment Variables:
 **Backend:**
 ```
 NODE_ENV=production
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/siet_connect
+MONGODB_URI=<your-mongodb-connection-string>
 JWT_SECRET=your_jwt_secret_key_here
 UPSTASH_REDIS_URL=your_upstash_redis_url
 UPSTASH_REDIS_TOKEN=your_upstash_token
