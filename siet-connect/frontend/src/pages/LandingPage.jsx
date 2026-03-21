@@ -5,18 +5,18 @@ import {
 } from "lucide-react";
 
 const features = [
-  { icon: BookOpen, title: "📝 PYQ Repository", desc: "Searchable previous year papers with branch & semester filters" },
-  { icon: Briefcase, title: "💼 Placement Board", desc: "Live internship & job listings with upvote-ranked opportunities" },
-  { icon: FileText, title: "📄 Document Portal", desc: "Request bonafide, transcripts, and ID cards — track status live" },
-  { icon: Users, title: "🌐 Real-Time Campus", desc: "See who's online, get instant notice alerts via Socket.io" },
-  { icon: Shield, title: "🛡️ Admin Dashboard", desc: "Faculty & admin tools for notices, attendance, and user management" },
-  { icon: Zap, title: "⚡ XP & Streaks", desc: "Gamified engagement — earn XP, maintain streaks, climb the leaderboard" },
+  { icon: BookOpen, title: "PYQ Repository", desc: "Searchable previous year papers with branch & semester filters" },
+  { icon: Briefcase, title: "Placement Board", desc: "Live internship & job listings with upvote-ranked opportunities" },
+  { icon: FileText, title: "Document Portal", desc: "Request bonafide, transcripts, and ID cards — track status live" },
+  { icon: Users, title: "Real-Time Campus", desc: "See who's online, get instant notice alerts" },
+  { icon: Shield, title: "Admin Dashboard", desc: "Faculty & admin tools for notices, attendance, and user management" },
+  { icon: Zap, title: "XP & Streaks", desc: "Gamified engagement — earn XP, maintain streaks, climb the leaderboard" },
 ];
 
 const courses = [
-  { name: "🤖 CSE (AI & ML)", intake: 60, img: "/images/AI-ML-300x200.jpg.jpeg", desc: "Artificial Intelligence & Machine Learning" },
-  { name: "🔐 CSE (Cyber Security)", intake: 60, img: "/images/Cyber-Security-300x200.jpg.jpeg", desc: "Cyber Security & Ethical Hacking" },
-  { name: "🦾 Robotics & Automation", intake: 60, img: "/images/Robotics-Automation-300x200.jpg.jpeg", desc: "Robotics & Automation Engineering" },
+  { name: "CSE (AI & ML)", intake: 60, img: "/images/AI-ML-300x200.jpg.jpeg", desc: "Artificial Intelligence & Machine Learning" },
+  { name: "CSE (Cyber Security)", intake: 60, img: "/images/Cyber-Security-300x200.jpg.jpeg", desc: "Cyber Security & Ethical Hacking" },
+  { name: "Robotics & Automation", intake: 60, img: "/images/Robotics-Automation-300x200.jpg.jpeg", desc: "Robotics & Automation Engineering" },
 ];
 
 const LandingPage = () => {
@@ -58,7 +58,7 @@ const LandingPage = () => {
             SIET <span className="text-accent">Connect</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-base-content/70 max-w-2xl mx-auto mb-1">
+          <p className="text-base sm:text-lg text-base-content/70 max-w-2xl mx-auto mb-1">
             राज्य अभियांत्रिकी एवं प्रौद्योगिकी संस्थान, पंचकुला
           </p>
           <p className="text-base text-base-content/50 mb-2">
@@ -105,7 +105,7 @@ const LandingPage = () => {
       <section className="py-16 px-4 bg-base-200" aria-labelledby="courses-heading">
         <div className="max-w-5xl mx-auto">
           <h2 id="courses-heading" className="text-3xl font-bold text-center mb-3">
-            🎓 Courses <span className="text-accent">Offered</span>
+            Courses <span className="text-accent">Offered</span>
           </h2>
           <p className="text-center text-base-content/60 mb-10">B.Tech programs with intake of 60 students each</p>
 
@@ -141,7 +141,7 @@ const LandingPage = () => {
                   className="w-32 h-40 rounded-2xl object-cover shadow-md flex-shrink-0"
                 />
                 <div>
-                  <h2 id="director-heading" className="text-xl font-bold mb-1">🎓 Director Principal's Message</h2>
+                  <h2 id="director-heading" className="text-xl font-bold mb-1">Director Principal's Message</h2>
                   <p className="text-sm text-accent font-medium mb-3">SIET Panchkula</p>
                   <p className="text-base-content/70 text-sm leading-relaxed">
                     "At SIET Panchkula, we are committed to nurturing the next generation of engineers and technologists.
@@ -161,7 +161,7 @@ const LandingPage = () => {
       <section id="landing-main" className="py-16 px-4 bg-base-200" aria-labelledby="features-heading">
         <div className="max-w-5xl mx-auto">
           <h2 id="features-heading" className="text-3xl font-bold text-center mb-12">
-            ✨ Everything SIET Needs, <span className="text-accent">One App</span>
+            Everything SIET Needs, <span className="text-accent">One App</span>
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -183,12 +183,12 @@ const LandingPage = () => {
       {/* Audience Pathways */}
       <section className="py-16 px-4" aria-labelledby="pathways-heading">
         <div className="max-w-5xl mx-auto">
-          <h2 id="pathways-heading" className="text-2xl font-bold text-center mb-8">🚀 Quick Access</h2>
+          <h2 id="pathways-heading" className="text-2xl font-bold text-center mb-8">Quick Access</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { title: "🎒 Students", desc: "PYQs, attendance, notices, placements", icon: GraduationCap, color: "text-accent" },
-              { title: "👩‍🏫 Faculty", desc: "Post notices, manage attendance, upload PYQs", icon: BookOpen, color: "text-success" },
-              { title: "👀 Visitors", desc: "Courses offered, contact, campus info", icon: Globe, color: "text-warning" },
+              { title: "Students", desc: "PYQs, attendance, notices, placements", icon: GraduationCap, color: "text-accent" },
+              { title: "Faculty", desc: "Post notices, manage attendance, upload PYQs", icon: BookOpen, color: "text-success" },
+              { title: "Visitors", desc: "Courses offered, contact, campus info", icon: Globe, color: "text-warning" },
             ].map((p, i) => (
               <Link
                 key={i}

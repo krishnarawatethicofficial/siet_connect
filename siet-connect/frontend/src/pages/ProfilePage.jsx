@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
-  User, Mail, IdCard, BookOpen, Hash, Phone, Save,
-  Flame, Star, TrendingUp, Calendar,
+  User, Mail, CreditCard, BookOpen, Hash, Phone, Save,
+  Flame, Star, TrendingUp,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import api from "../lib/axios.js";
@@ -28,10 +28,10 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-6">👤 Profile</h1>
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Profile</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {/* Profile Card */}
         <div className="card bg-base-200 rounded-2xl shadow-lg">
           <div className="card-body items-center text-center">
@@ -72,7 +72,7 @@ const ProfilePage = () => {
         {/* Edit Form */}
         <div className="card bg-base-200 rounded-2xl shadow-lg lg:col-span-2">
           <div className="card-body">
-            <h2 className="font-semibold text-lg mb-4">✏️ Edit Profile</h2>
+            <h2 className="font-semibold text-lg mb-4">Edit Profile</h2>
             <form onSubmit={handleSave} className="space-y-4">
               <div className="form-control">
                 <label htmlFor="prof-name" className="label"><span className="label-text font-medium flex items-center gap-1.5"><User size={14} /> Full Name</span></label>
@@ -83,7 +83,7 @@ const ProfilePage = () => {
                 <input type="email" className="input input-bordered rounded-xl" value={user?.email} disabled aria-label="Email (cannot be changed)" />
               </div>
               <div className="form-control">
-                <label className="label"><span className="label-text font-medium flex items-center gap-1.5"><IdCard size={14} /> Student ID</span></label>
+                <label className="label"><span className="label-text font-medium flex items-center gap-1.5"><CreditCard size={14} /> Student ID</span></label>
                 <input type="text" className="input input-bordered rounded-xl" value={user?.studentId} disabled aria-label="Student ID (cannot be changed)" />
               </div>
               <div className="grid grid-cols-2 gap-4">

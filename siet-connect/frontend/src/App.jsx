@@ -79,21 +79,21 @@ const App = () => {
             <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/dashboard" />} />
             <Route path="/signup" element={!user ? <SignupPage /> : <Navigate to="/dashboard" />} />
 
-            {/* Protected routes */}
+            {/* Protected routes — base paths redirect to default tab */}
             <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-            <Route path="/academics" element={<ProtectedRoute><AcademicsPage /></ProtectedRoute>} />
+            <Route path="/academics" element={<ProtectedRoute><Navigate to="/academics/pyqs" replace /></ProtectedRoute>} />
             <Route path="/academics/:tab" element={<ProtectedRoute><AcademicsPage /></ProtectedRoute>} />
-            <Route path="/placements" element={<ProtectedRoute><PlacementsPage /></ProtectedRoute>} />
+            <Route path="/placements" element={<ProtectedRoute><Navigate to="/placements/opportunities" replace /></ProtectedRoute>} />
             <Route path="/placements/:tab" element={<ProtectedRoute><PlacementsPage /></ProtectedRoute>} />
-            <Route path="/campus" element={<ProtectedRoute><CampusPage /></ProtectedRoute>} />
+            <Route path="/campus" element={<ProtectedRoute><Navigate to="/campus/events" replace /></ProtectedRoute>} />
             <Route path="/campus/:tab" element={<ProtectedRoute><CampusPage /></ProtectedRoute>} />
-            <Route path="/services" element={<ProtectedRoute><ServicesPage /></ProtectedRoute>} />
+            <Route path="/services" element={<ProtectedRoute><Navigate to="/services/documents" replace /></ProtectedRoute>} />
             <Route path="/services/:tab" element={<ProtectedRoute><ServicesPage /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path="/leaderboard" element={<ProtectedRoute><LeaderboardPage /></ProtectedRoute>} />
 
             {/* Admin only */}
-            <Route path="/admin" element={<ProtectedRoute requiredRole="admin"><AdminPage /></ProtectedRoute>} />
+            <Route path="/admin" element={<ProtectedRoute requiredRole="admin"><Navigate to="/admin/overview" replace /></ProtectedRoute>} />
             <Route path="/admin/:tab" element={<ProtectedRoute requiredRole="admin"><AdminPage /></ProtectedRoute>} />
 
             {/* 404 */}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  Search, BookOpen, FileDown, Filter, GraduationCap, Calendar,
+  Search, BookOpen, FileDown, Calendar,
   Download, FileText, ExternalLink,
 } from "lucide-react";
 import api from "../lib/axios.js";
@@ -11,7 +11,6 @@ import Spinner from "../components/Spinner.jsx";
 import EmptyState from "../components/EmptyState.jsx";
 
 const tabs = ["PYQs", "Syllabus", "Faculty", "Lab Manuals", "Calendar"];
-const tabEmojis = { "PYQs": "📝", "Syllabus": "📖", "Faculty": "👩‍🏫", "Lab Manuals": "🧪", "Calendar": "📅" };
 const tabSlugs = { "pyqs": "PYQs", "syllabus": "Syllabus", "faculty": "Faculty", "lab-manuals": "Lab Manuals", "calendar": "Calendar" };
 const toSlug = (t) => t.toLowerCase().replace(/ /g, "-");
 
@@ -53,13 +52,11 @@ const AcademicsPage = () => {
     return "PYQs";
   });
 
-  // Sync tab from URL - improved to handle all cases
   useEffect(() => {
     if (tab && tabSlugs[tab]) {
       setActiveTab(tabSlugs[tab]);
-    } else if (!tab) {
-      // No tab in URL, navigate to default
-      navigate(`/academics/${toSlug("PYQs")}`, { replace: true });
+    } else if (tab) {
+      navigate("/academics/pyqs", { replace: true });
     }
   }, [tab, navigate]);
 
@@ -106,12 +103,12 @@ const AcademicsPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">📚 Academics</h1>
-      <p className="text-base-content/60 text-sm mb-6">📖 Syllabus, PYQs, faculty profiles, and resources</p>
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-1">Academics</h1>
+      <p className="text-base-content/60 text-xs sm:text-sm mb-4 sm:mb-6">Syllabus, PYQs, faculty profiles, and resources</p>
 
       {/* Tabs */}
-      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-6 overflow-x-auto" role="tablist">
+      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-4 sm:mb-6 overflow-x-auto whitespace-nowrap" role="tablist">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -120,7 +117,7 @@ const AcademicsPage = () => {
             role="tab"
             aria-selected={activeTab === tab}
           >
-            {tabEmojis[tab]} {tab}
+            {tab}
           </button>
         ))}
       </div>
@@ -284,16 +281,16 @@ const AcademicsPage = () => {
               </h3>
               <div className="space-y-3">
                 {[
-                  { date: "Jul 15, 2025", event: "📘 Odd Semester Begins", type: "academic" },
-                  { date: "Aug 15, 2025", event: "🇮🇳 Independence Day — Holiday", type: "holiday" },
-                  { date: "Sep 20, 2025", event: "✍️ Mid-Semester Exams", type: "exam" },
-                  { date: "Oct 12, 2025", event: "🪔 Dussehra Break", type: "holiday" },
-                  { date: "Nov 1, 2025", event: "🚀 Tech Fest — SIET Innovate", type: "event" },
-                  { date: "Dec 1, 2025", event: "📝 End-Semester Exams Begin", type: "exam" },
-                  { date: "Jan 5, 2026", event: "📘 Even Semester Begins", type: "academic" },
-                  { date: "Mar 20, 2026", event: "🎨 Holi Break", type: "holiday" },
-                  { date: "Apr 15, 2026", event: "✍️ Mid-Semester Exams", type: "exam" },
-                  { date: "Jun 1, 2026", event: "📝 End-Semester Exams Begin", type: "exam" },
+                  { date: "Jul 15, 2025", event: "Odd Semester Begins", type: "academic" },
+                  { date: "Aug 15, 2025", event: "Independence Day — Holiday", type: "holiday" },
+                  { date: "Sep 20, 2025", event: "Mid-Semester Exams", type: "exam" },
+                  { date: "Oct 12, 2025", event: "Dussehra Break", type: "holiday" },
+                  { date: "Nov 1, 2025", event: "Tech Fest — SIET Innovate", type: "event" },
+                  { date: "Dec 1, 2025", event: "End-Semester Exams Begin", type: "exam" },
+                  { date: "Jan 5, 2026", event: "Even Semester Begins", type: "academic" },
+                  { date: "Mar 20, 2026", event: "Holi Break", type: "holiday" },
+                  { date: "Apr 15, 2026", event: "Mid-Semester Exams", type: "exam" },
+                  { date: "Jun 1, 2026", event: "End-Semester Exams Begin", type: "exam" },
                 ].map((e, i) => (
                   <div key={i} className="flex items-center gap-4 bg-base-300/50 rounded-xl p-3">
                     <span className="text-sm font-mono text-accent min-w-[100px]">{e.date}</span>

@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Home, BookOpen, Briefcase, Building2, FileText, User, Shield,
-  Trophy, LogOut, Menu, X, Search, Bell, Sun, Moon,
+  Trophy, LogOut, Menu, X, Sun, Moon,
   Eye, ALargeSmall, Space, Settings,
 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -9,12 +9,12 @@ import useAuthStore from "../store/authStore.js";
 import useAccessibilityStore from "../store/accessibilityStore.js";
 
 const navItems = [
-  { path: "/dashboard", label: "🏠 Dashboard", icon: Home },
-  { path: "/academics", label: "📚 Academics", icon: BookOpen },
-  { path: "/placements", label: "💼 Placements", icon: Briefcase },
-  { path: "/campus", label: "🏫 Campus", icon: Building2 },
-  { path: "/services", label: "📋 Services", icon: FileText },
-  { path: "/leaderboard", label: "🏆 Leaderboard", icon: Trophy },
+  { path: "/dashboard", label: "Dashboard", icon: Home },
+  { path: "/academics", label: "Academics", icon: BookOpen },
+  { path: "/placements", label: "Placements", icon: Briefcase },
+  { path: "/campus", label: "Campus", icon: Building2 },
+  { path: "/services", label: "Services", icon: FileText },
+  { path: "/leaderboard", label: "Leaderboard", icon: Trophy },
 ];
 
 const Navbar = () => {
@@ -73,7 +73,7 @@ const Navbar = () => {
                 }`}
               >
                 <Shield size={16} aria-hidden="true" />
-                🛡️ Admin
+                Admin
               </Link>
             )}
           </div>
@@ -165,7 +165,7 @@ const Navbar = () => {
       {drawerOpen && (
         <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-label="Navigation menu">
           <div className="fixed inset-0 bg-black/50" onClick={() => setDrawerOpen(false)} aria-hidden="true" />
-          <div className="fixed top-0 left-0 bottom-0 w-72 bg-base-200 shadow-2xl p-6 overflow-y-auto">
+          <div className="fixed top-0 left-0 bottom-0 w-64 sm:w-72 bg-base-200 shadow-2xl p-4 sm:p-6 overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <span className="font-bold text-lg">Menu</span>
               <button onClick={() => setDrawerOpen(false)} className="btn btn-ghost btn-sm btn-circle" aria-label="Close menu">
@@ -194,7 +194,7 @@ const Navbar = () => {
                   }`}
                 >
                   <Shield size={18} aria-hidden="true" />
-                  🛡️ Admin Panel
+                  Admin Panel
                 </Link>
               )}
               <Link to="/profile" className="btn btn-ghost justify-start gap-3">

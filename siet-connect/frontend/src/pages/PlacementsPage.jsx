@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   Search, Briefcase, TrendingUp, Users, Calendar, MapPin,
   ExternalLink, ArrowUpCircle, BarChart3, BookOpen, Phone,
-  Filter,
 } from "lucide-react";
 import api from "../lib/axios.js";
 import useDebounce from "../hooks/useDebounce.js";
@@ -11,7 +10,6 @@ import Spinner from "../components/Spinner.jsx";
 import EmptyState from "../components/EmptyState.jsx";
 
 const tabs = ["Opportunities", "Stats", "Alumni", "Interview Prep", "TPO"];
-const tabEmojis = { "Opportunities": "🎯", "Stats": "📊", "Alumni": "🎓", "Interview Prep": "📋", "TPO": "🏢" };
 const tabSlugs = { "opportunities": "Opportunities", "stats": "Stats", "alumni": "Alumni", "interview-prep": "Interview Prep", "tpo": "TPO" };
 const toSlug = (t) => t.toLowerCase().replace(/ /g, "-");
 
@@ -27,8 +25,8 @@ const PlacementsPage = () => {
   useEffect(() => {
     if (tab && tabSlugs[tab]) {
       setActiveTab(tabSlugs[tab]);
-    } else if (!tab) {
-      navigate(`/placements/${toSlug("Opportunities")}`, { replace: true });
+    } else if (tab) {
+      navigate("/placements/opportunities", { replace: true });
     }
   }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/placements/${toSlug(t)}`, { replace: true }); };
@@ -88,24 +86,24 @@ const PlacementsPage = () => {
 
   // Interview prep resources
   const prepResources = [
-    { title: "🧩 DSA Sheet — 300 Problems", desc: "Curated by SIET seniors, topic-wise", type: "Sheet", link: "#" },
-    { title: "🧠 Aptitude Practice Tests", desc: "Mock tests for TCS, Infosys, Wipro patterns", type: "Mock Test", link: "#" },
-    { title: "🏗️ System Design Basics", desc: "HLD & LLD for final year students", type: "Guide", link: "#" },
-    { title: "🗣️ HR Interview Questions", desc: "50 most-asked HR questions with sample answers", type: "Guide", link: "#" },
-    { title: "⏱️ Coding Round Strategies", desc: "Time management + approach for online tests", type: "Guide", link: "#" },
-    { title: "📄 Resume Template", desc: "ATS-friendly resume template for freshers", type: "Template", link: "#" },
+    { title: "DSA Sheet — 300 Problems", desc: "Curated by SIET seniors, topic-wise", type: "Sheet", link: "#" },
+    { title: "Aptitude Practice Tests", desc: "Mock tests for TCS, Infosys, Wipro patterns", type: "Mock Test", link: "#" },
+    { title: "System Design Basics", desc: "HLD & LLD for final year students", type: "Guide", link: "#" },
+    { title: "HR Interview Questions", desc: "50 most-asked HR questions with sample answers", type: "Guide", link: "#" },
+    { title: "Coding Round Strategies", desc: "Time management + approach for online tests", type: "Guide", link: "#" },
+    { title: "Resume Template", desc: "ATS-friendly resume template for freshers", type: "Template", link: "#" },
   ];
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">💼 Placements & Career</h1>
-      <p className="text-base-content/60 text-sm mb-6">🎯 Opportunities, stats, alumni network, and interview prep</p>
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-1">Placements & Career</h1>
+      <p className="text-base-content/60 text-xs sm:text-sm mb-4 sm:mb-6">Opportunities, stats, alumni network, and interview prep</p>
 
       {/* Tabs */}
-      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-6 overflow-x-auto" role="tablist">
+      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-4 sm:mb-6 overflow-x-auto whitespace-nowrap" role="tablist">
         {tabs.map((tab) => (
           <button key={tab} onClick={() => switchTab(tab)} className={`tab tab-sm sm:tab-md transition-all duration-200 ${activeTab === tab ? "tab-active !bg-accent !text-white rounded-xl" : ""}`} role="tab" aria-selected={activeTab === tab}>
-            {tabEmojis[tab]} {tab}
+            {tab}
           </button>
         ))}
       </div>
@@ -181,10 +179,10 @@ const PlacementsPage = () => {
             <div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
                 {[
-                  { label: "📈 Total Drives", val: stats.total, color: "text-accent" },
-                  { label: "🟢 Open Now", val: stats.open, color: "text-success" },
-                  { label: "🧑‍💻 Internships", val: stats.internships, color: "text-warning" },
-                  { label: "🏢 Full-Time", val: stats.fulltime, color: "text-info" },
+                  { label: "Total Drives", val: stats.total, color: "text-accent" },
+                  { label: "Open Now", val: stats.open, color: "text-success" },
+                  { label: "Internships", val: stats.internships, color: "text-warning" },
+                  { label: "Full-Time", val: stats.fulltime, color: "text-info" },
                 ].map((s, i) => (
                   <div key={i} className="card bg-base-200 rounded-2xl shadow text-center">
                     <div className="card-body p-4">

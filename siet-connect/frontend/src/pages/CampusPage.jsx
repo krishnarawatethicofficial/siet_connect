@@ -6,44 +6,43 @@ import {
 } from "lucide-react";
 
 const tabs = ["Events", "Clubs", "Hackathons", "Gallery", "Sports", "Campus Map", "Canteen"];
-const tabEmojis = { "Events": "🎉", "Clubs": "🤝", "Hackathons": "🏆", "Gallery": "📸", "Sports": "🏏", "Campus Map": "🗺️", "Canteen": "🍽️" };
 const tabSlugs = { "events": "Events", "clubs": "Clubs", "hackathons": "Hackathons", "gallery": "Gallery", "sports": "Sports", "campus-map": "Campus Map", "canteen": "Canteen" };
 const toSlug = (t) => t.toLowerCase().replace(/ /g, "-");
 
 const eventsData = [
-  { title: "🚀 SIET Innovate 2026 — Tech Fest", date: "Apr 5–6, 2026", type: "fest", desc: "Annual tech fest with coding contests, robotics challenge, and hackathon", rsvp: true },
-  { title: "🤖 AI Workshop — Intro to LLMs", date: "Mar 25, 2026", type: "workshop", desc: "Hands-on workshop on building with large language models", rsvp: true },
-  { title: "🔒 Cyber Security Seminar", date: "Mar 28, 2026", type: "seminar", desc: "Guest lecture by CERT-In expert on incident response", rsvp: true },
-  { title: "🎭 Cultural Night", date: "Apr 12, 2026", type: "cultural", desc: "Annual cultural evening with music, dance, and drama performances", rsvp: false },
+  { title: "SIET Innovate 2026 — Tech Fest", date: "Apr 5–6, 2026", type: "fest", desc: "Annual tech fest with coding contests, robotics challenge, and hackathon", rsvp: true },
+  { title: "AI Workshop — Intro to LLMs", date: "Mar 25, 2026", type: "workshop", desc: "Hands-on workshop on building with large language models", rsvp: true },
+  { title: "Cyber Security Seminar", date: "Mar 28, 2026", type: "seminar", desc: "Guest lecture by CERT-In expert on incident response", rsvp: true },
+  { title: "Cultural Night", date: "Apr 12, 2026", type: "cultural", desc: "Annual cultural evening with music, dance, and drama performances", rsvp: false },
 ];
 
 const clubsData = [
-  { name: "💻 CodeCraft — Coding Club", members: 45, desc: "Weekly contests, DSA workshops, CP mentoring", category: "technical" },
-  { name: "🛡️ CyberShield — Security Club", members: 30, desc: "CTFs, ethical hacking sessions, security awareness", category: "technical" },
-  { name: "🤖 RoboSIET — Robotics Club", members: 25, desc: "Bot building, line follower, drone projects", category: "technical" },
-  { name: "📖 Literary Society", members: 35, desc: "Debates, quizzes, creative writing, poetry slams", category: "cultural" },
-  { name: "📷 Photography Club", members: 20, desc: "Campus photography, events coverage, exhibitions", category: "cultural" },
-  { name: "⚽ Sports Committee", members: 40, desc: "Inter-college tournaments, fitness drives, sports day", category: "sports" },
+  { name: "CodeCraft — Coding Club", members: 45, desc: "Weekly contests, DSA workshops, CP mentoring", category: "technical" },
+  { name: "CyberShield — Security Club", members: 30, desc: "CTFs, ethical hacking sessions, security awareness", category: "technical" },
+  { name: "RoboSIET — Robotics Club", members: 25, desc: "Bot building, line follower, drone projects", category: "technical" },
+  { name: "Literary Society", members: 35, desc: "Debates, quizzes, creative writing, poetry slams", category: "cultural" },
+  { name: "Photography Club", members: 20, desc: "Campus photography, events coverage, exhibitions", category: "cultural" },
+  { name: "Sports Committee", members: 40, desc: "Inter-college tournaments, fitness drives, sports day", category: "sports" },
 ];
 
 const sportsSchedule = [
-  { day: "Monday", activity: "🏏 Cricket Practice", time: "4:00 – 6:00 PM", venue: "Ground" },
-  { day: "Tuesday", activity: "🏸 Badminton (Open)", time: "5:00 – 7:00 PM", venue: "Indoor Hall" },
-  { day: "Wednesday", activity: "⚽ Football Practice", time: "4:00 – 6:00 PM", venue: "Ground" },
-  { day: "Thursday", activity: "🏓 Table Tennis", time: "3:00 – 5:00 PM", venue: "Common Room" },
-  { day: "Friday", activity: "🏀 Basketball (Open)", time: "4:30 – 6:30 PM", venue: "Court" },
-  { day: "Saturday", activity: "🏃 Athletics Training", time: "6:00 – 8:00 AM", venue: "Track" },
+  { day: "Monday", activity: "Cricket Practice", time: "4:00 – 6:00 PM", venue: "Ground" },
+  { day: "Tuesday", activity: "Badminton (Open)", time: "5:00 – 7:00 PM", venue: "Indoor Hall" },
+  { day: "Wednesday", activity: "Football Practice", time: "4:00 – 6:00 PM", venue: "Ground" },
+  { day: "Thursday", activity: "Table Tennis", time: "3:00 – 5:00 PM", venue: "Common Room" },
+  { day: "Friday", activity: "Basketball (Open)", time: "4:30 – 6:30 PM", venue: "Court" },
+  { day: "Saturday", activity: "Athletics Training", time: "6:00 – 8:00 AM", venue: "Track" },
 ];
 
 const canteenMenu = [
-  { item: "🍛 Chole Bhature", price: "₹50", category: "Main" },
-  { item: "🍚 Rajma Chawal", price: "₹45", category: "Main" },
-  { item: "🌯 Paneer Roll", price: "₹35", category: "Snack" },
-  { item: "🔺 Samosa (2 pcs)", price: "₹20", category: "Snack" },
-  { item: "☕ Masala Chai", price: "₹10", category: "Beverage" },
-  { item: "🧊 Cold Coffee", price: "₹30", category: "Beverage" },
-  { item: "🍜 Maggi", price: "₹30", category: "Snack" },
-  { item: "🥘 Bread Pakora", price: "₹20", category: "Snack" },
+  { item: "Chole Bhature", price: "₹50", category: "Main" },
+  { item: "Rajma Chawal", price: "₹45", category: "Main" },
+  { item: "Paneer Roll", price: "₹35", category: "Snack" },
+  { item: "Samosa (2 pcs)", price: "₹20", category: "Snack" },
+  { item: "Masala Chai", price: "₹10", category: "Beverage" },
+  { item: "Cold Coffee", price: "₹30", category: "Beverage" },
+  { item: "Maggi", price: "₹30", category: "Snack" },
+  { item: "Bread Pakora", price: "₹20", category: "Snack" },
 ];
 
 const CampusPage = () => {
@@ -58,21 +57,21 @@ const CampusPage = () => {
   useEffect(() => {
     if (tab && tabSlugs[tab]) {
       setActiveTab(tabSlugs[tab]);
-    } else if (!tab) {
-      navigate(`/campus/${toSlug("Events")}`, { replace: true });
+    } else if (tab) {
+      navigate("/campus/events", { replace: true });
     }
   }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/campus/${toSlug(t)}`, { replace: true }); };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">🏫 Campus Life</h1>
-      <p className="text-base-content/60 text-sm mb-6">🎉 Events, clubs, sports, and campus facilities</p>
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-1">Campus Life</h1>
+      <p className="text-base-content/60 text-xs sm:text-sm mb-4 sm:mb-6">Events, clubs, sports, and campus facilities</p>
 
-      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-6 overflow-x-auto" role="tablist">
+      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-4 sm:mb-6 overflow-x-auto whitespace-nowrap" role="tablist">
         {tabs.map((tab) => (
           <button key={tab} onClick={() => switchTab(tab)} className={`tab tab-sm sm:tab-md transition-all duration-200 ${activeTab === tab ? "tab-active !bg-accent !text-white rounded-xl" : ""}`} role="tab" aria-selected={activeTab === tab}>
-            {tabEmojis[tab]} {tab}
+            {tab}
           </button>
         ))}
       </div>
@@ -185,11 +184,13 @@ const CampusPage = () => {
               <h3 className="font-semibold flex items-center gap-2 mb-4"><Dumbbell size={18} className="text-accent" /> Weekly Sports Schedule</h3>
               <div className="space-y-3">
                 {sportsSchedule.map((s, i) => (
-                  <div key={i} className="flex items-center gap-4 bg-base-300/50 rounded-xl p-3">
-                    <span className="text-sm font-bold text-accent min-w-[80px]">{s.day}</span>
+                  <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 bg-base-300/50 rounded-xl p-3">
+                    <span className="text-sm font-bold text-accent sm:min-w-[80px]">{s.day}</span>
                     <span className="flex-1 text-sm font-medium">{s.activity}</span>
-                    <span className="text-xs text-base-content/50 flex items-center gap-1"><Clock size={12} /> {s.time}</span>
-                    <span className="badge badge-ghost badge-xs">{s.venue}</span>
+                    <div className="flex items-center gap-2 text-xs text-base-content/50">
+                      <span className="flex items-center gap-1"><Clock size={12} /> {s.time}</span>
+                      <span className="badge badge-ghost badge-xs">{s.venue}</span>
+                    </div>
                   </div>
                 ))}
               </div>

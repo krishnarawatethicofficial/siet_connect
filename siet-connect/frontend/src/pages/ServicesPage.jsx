@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
-  FileText, Bus, Search as SearchIcon, IdCard,
-  Utensils, Wifi, HelpCircle, AlertCircle, Clock, CheckCircle,
+  FileText, Bus, Search as SearchIcon, CreditCard,
+  Utensils, HelpCircle, Clock, CheckCircle,
   XCircle, Send, MapPin, Phone, Calendar,
 } from "lucide-react";
 import toast from "react-hot-toast";
@@ -11,7 +11,6 @@ import Spinner from "../components/Spinner.jsx";
 import EmptyState from "../components/EmptyState.jsx";
 
 const tabs = ["Documents", "Hostel & Mess", "Bus Routes", "Lost & Found", "Scholarships", "ID Card", "Freshman FAQ"];
-const tabEmojis = { "Documents": "📄", "Hostel & Mess": "🏠", "Bus Routes": "🚌", "Lost & Found": "🔍", "Scholarships": "🎓", "ID Card": "🪪", "Freshman FAQ": "❓" };
 const tabSlugs = { "documents": "Documents", "hostel-mess": "Hostel & Mess", "bus-routes": "Bus Routes", "lost-found": "Lost & Found", "scholarships": "Scholarships", "id-card": "ID Card", "freshman-faq": "Freshman FAQ" };
 const toSlug = (t) => t.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-");
 
@@ -26,13 +25,13 @@ const docTypes = [
 ];
 
 const messMenu = [
-  { day: "Monday", breakfast: "🥣 Poha + Tea", lunch: "🍛 Dal, Rice, Roti, Sabzi", dinner: "🧀 Paneer, Roti, Rice, Dal" },
-  { day: "Tuesday", breakfast: "🫓 Parantha + Curd", lunch: "🫘 Rajma, Rice, Roti, Salad", dinner: "🥘 Mix Veg, Roti, Rice, Dal" },
-  { day: "Wednesday", breakfast: "🍘 Idli Sambhar", lunch: "🍛 Chole, Rice, Roti, Raita", dinner: "🍲 Dal Makhani, Roti, Rice" },
-  { day: "Thursday", breakfast: "🍳 Bread Omelette / Poha", lunch: "🥘 Kadhi Pakora, Rice, Roti", dinner: "🥔 Aloo Gobi, Roti, Rice, Dal" },
-  { day: "Friday", breakfast: "🫓 Aloo Parantha + Pickle", lunch: "🍛 Dal, Rice, Roti, Bhindi", dinner: "🧀 Shahi Paneer, Roti, Rice" },
-  { day: "Saturday", breakfast: "🍛 Chole Bhature", lunch: "🍚 Biryani, Raita, Salad", dinner: "🍲 Dal, Roti, Rice, Sabzi" },
-  { day: "Sunday", breakfast: "🥘 Puri Sabzi + Halwa", lunch: "🍽️ Special Thali", dinner: "🥣 Light — Khichdi + Papad" },
+  { day: "Monday", breakfast: "Poha + Tea", lunch: "Dal, Rice, Roti, Sabzi", dinner: "Paneer, Roti, Rice, Dal" },
+  { day: "Tuesday", breakfast: "Parantha + Curd", lunch: "Rajma, Rice, Roti, Salad", dinner: "Mix Veg, Roti, Rice, Dal" },
+  { day: "Wednesday", breakfast: "Idli Sambhar", lunch: "Chole, Rice, Roti, Raita", dinner: "Dal Makhani, Roti, Rice" },
+  { day: "Thursday", breakfast: "Bread Omelette / Poha", lunch: "Kadhi Pakora, Rice, Roti", dinner: "Aloo Gobi, Roti, Rice, Dal" },
+  { day: "Friday", breakfast: "Aloo Parantha + Pickle", lunch: "Dal, Rice, Roti, Bhindi", dinner: "Shahi Paneer, Roti, Rice" },
+  { day: "Saturday", breakfast: "Chole Bhature", lunch: "Biryani, Raita, Salad", dinner: "Dal, Roti, Rice, Sabzi" },
+  { day: "Sunday", breakfast: "Puri Sabzi + Halwa", lunch: "Special Thali", dinner: "Light — Khichdi + Papad" },
 ];
 
 const busRoutes = [
@@ -43,20 +42,20 @@ const busRoutes = [
 ];
 
 const scholarships = [
-  { name: "🏛️ Post Matric Scholarship (SC/BC)", org: "Haryana Govt", amount: "Full tuition", deadline: "Oct 31, 2026" },
-  { name: "🏅 Merit-cum-Means Scholarship", org: "AICTE", amount: "₹50,000/year", deadline: "Dec 15, 2026" },
-  { name: "👩‍🎓 Pragati Scholarship (Girls)", org: "AICTE", amount: "₹50,000/year", deadline: "Nov 30, 2026" },
-  { name: "🇮🇳 National Scholarship Portal (NSP)", org: "Central Govt", amount: "Varies", deadline: "Jan 31, 2027" },
-  { name: "💡 Inspire Scholarship", org: "DST", amount: "₹80,000/year", deadline: "Sep 30, 2026" },
+  { name: "Post Matric Scholarship (SC/BC)", org: "Haryana Govt", amount: "Full tuition", deadline: "Oct 31, 2026" },
+  { name: "Merit-cum-Means Scholarship", org: "AICTE", amount: "₹50,000/year", deadline: "Dec 15, 2026" },
+  { name: "Pragati Scholarship (Girls)", org: "AICTE", amount: "₹50,000/year", deadline: "Nov 30, 2026" },
+  { name: "National Scholarship Portal (NSP)", org: "Central Govt", amount: "Varies", deadline: "Jan 31, 2027" },
+  { name: "Inspire Scholarship", org: "DST", amount: "₹80,000/year", deadline: "Sep 30, 2026" },
 ];
 
 const faqs = [
-  { q: "📑 What documents do I need for admission?", a: "10th & 12th marksheets, JEE scorecard, category certificate, Aadhaar, passport photos, and admission fee receipt." },
-  { q: "📶 How do I get campus Wi-Fi?", a: "Visit the IT office (Room 110) with your student ID to register your device's MAC address." },
-  { q: "🏠 Where is the hostel?", a: "Boys hostel is on the GPP campus (shared). Girls hostel is in Sector 26 nearby. Contact warden for allocation." },
-  { q: "📊 What is the attendance policy?", a: "Minimum 75% attendance is mandatory. Below this, you may be detained from exams." },
-  { q: "🤝 How do I join a club?", a: "Go to Campus Life > Clubs section and click 'Join Club' or visit the club coordinator during activity hours." },
-  { q: "🅿️ Where can I park?", a: "Two-wheeler parking at Gate 1, four-wheeler at Gate 2. Display your parking sticker." },
+  { q: "What documents do I need for admission?", a: "10th & 12th marksheets, JEE scorecard, category certificate, Aadhaar, passport photos, and admission fee receipt." },
+  { q: "How do I get campus Wi-Fi?", a: "Visit the IT office (Room 110) with your student ID to register your device's MAC address." },
+  { q: "Where is the hostel?", a: "Boys hostel is on the GPP campus (shared). Girls hostel is in Sector 26 nearby. Contact warden for allocation." },
+  { q: "What is the attendance policy?", a: "Minimum 75% attendance is mandatory. Below this, you may be detained from exams." },
+  { q: "How do I join a club?", a: "Go to Campus Life > Clubs section and click 'Join Club' or visit the club coordinator during activity hours." },
+  { q: "Where can I park?", a: "Two-wheeler parking at Gate 1, four-wheeler at Gate 2. Display your parking sticker." },
 ];
 
 const ServicesPage = () => {
@@ -71,8 +70,8 @@ const ServicesPage = () => {
   useEffect(() => {
     if (tab && tabSlugs[tab]) {
       setActiveTab(tabSlugs[tab]);
-    } else if (!tab) {
-      navigate(`/services/${toSlug("Documents")}`, { replace: true });
+    } else if (tab) {
+      navigate("/services/documents", { replace: true });
     }
   }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/services/${toSlug(t)}`, { replace: true }); };
@@ -118,14 +117,14 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1">🛎️ Services & Admin</h1>
-      <p className="text-base-content/60 text-sm mb-6">📋 Document requests, hostel, transport, scholarships, and more</p>
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-1">Services</h1>
+      <p className="text-base-content/60 text-xs sm:text-sm mb-4 sm:mb-6">Document requests, hostel, transport, scholarships, and more</p>
 
-      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-6 overflow-x-auto" role="tablist">
+      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-4 sm:mb-6 overflow-x-auto whitespace-nowrap" role="tablist">
         {tabs.map((tab) => (
           <button key={tab} onClick={() => switchTab(tab)} className={`tab tab-sm sm:tab-md transition-all duration-200 ${activeTab === tab ? "tab-active !bg-accent !text-white rounded-xl" : ""}`} role="tab" aria-selected={activeTab === tab}>
-            {tabEmojis[tab]} {tab}
+            {tab}
           </button>
         ))}
       </div>
@@ -280,7 +279,7 @@ const ServicesPage = () => {
         <section aria-label="ID card services">
           <div className="card bg-base-200 rounded-2xl shadow max-w-lg">
             <div className="card-body">
-              <h3 className="font-semibold flex items-center gap-2"><IdCard size={18} className="text-accent" /> ID Card Services</h3>
+              <h3 className="font-semibold flex items-center gap-2"><CreditCard size={18} className="text-accent" /> ID Card Services</h3>
               <p className="text-sm text-base-content/60 mt-2">Lost your student ID? Request a replacement below. Submit the document request form with type "ID Card Replacement".</p>
               <button onClick={() => { switchTab("Documents"); setDocForm({ docType: "id-card", reason: "", priority: "normal" }); }} className="btn btn-accent rounded-xl mt-4 gap-2">
                 <FileText size={16} aria-hidden="true" /> Request Replacement

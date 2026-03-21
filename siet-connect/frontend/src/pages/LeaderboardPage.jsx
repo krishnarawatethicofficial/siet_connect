@@ -35,13 +35,13 @@ const LeaderboardPage = () => {
   if (loading) return <Spinner size="lg" />;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1 flex items-center gap-2">
-        <Trophy size={24} className="text-yellow-400" aria-hidden="true" /> Leaderboard
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-1 flex items-center gap-2">
+        <Trophy size={22} className="text-yellow-400" aria-hidden="true" /> Leaderboard
       </h1>
-      <p className="text-base-content/60 text-sm mb-6">🎯 Top students by XP — earn points by logging in, downloading PYQs, and upvoting</p>
+      <p className="text-base-content/60 text-xs sm:text-sm mb-4 sm:mb-6">Top students by XP — earn points by logging in, downloading PYQs, and upvoting</p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {/* Leaderboard */}
         <div className="lg:col-span-2">
           {leaders.length === 0 ? (
@@ -93,7 +93,7 @@ const LeaderboardPage = () => {
           {/* My Stats */}
           <div className="card bg-base-200 rounded-2xl shadow-lg">
             <div className="card-body">
-              <h2 className="font-semibold">📊 Your Stats</h2>
+              <h2 className="font-semibold">Your Stats</h2>
               <div className="grid grid-cols-3 gap-2 mt-3">
                 <div className="text-center bg-base-300/50 rounded-xl p-3">
                   <Star size={18} className="text-yellow-400 mx-auto" aria-hidden="true" />
@@ -119,12 +119,12 @@ const LeaderboardPage = () => {
           {/* XP Guide */}
           <div className="card bg-base-200 rounded-2xl shadow-lg">
             <div className="card-body">
-              <h2 className="font-semibold">💡 How to Earn XP</h2>
+              <h2 className="font-semibold">How to Earn XP</h2>
               <div className="space-y-2 mt-2 text-sm">
-                <div className="flex justify-between"><span>🔥 Daily login streak</span><span className="font-bold text-accent">+10 XP</span></div>
-                <div className="flex justify-between"><span>📤 Upload a PYQ</span><span className="font-bold text-accent">+15 XP</span></div>
-                <div className="flex justify-between"><span>👍 Upvote content</span><span className="font-bold text-accent">+2 XP</span></div>
-                <div className="flex justify-between"><span>📥 Download PYQ</span><span className="font-bold text-accent">+1 XP</span></div>
+                <div className="flex justify-between"><span>Daily login streak</span><span className="font-bold text-accent">+10 XP</span></div>
+                <div className="flex justify-between"><span>Upload a PYQ</span><span className="font-bold text-accent">+15 XP</span></div>
+                <div className="flex justify-between"><span>Upvote content</span><span className="font-bold text-accent">+2 XP</span></div>
+                <div className="flex justify-between"><span>Download PYQ</span><span className="font-bold text-accent">+1 XP</span></div>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@ const LeaderboardPage = () => {
           {/* Activity Heatmap */}
           <div className="card bg-base-200 rounded-2xl shadow-lg">
             <div className="card-body">
-              <h2 className="font-semibold">📈 Activity (30 Days)</h2>
+              <h2 className="font-semibold">Activity (30 Days)</h2>
               <div className="flex gap-1 flex-wrap mt-3">
                 {Array.from({ length: 30 }, (_, i) => {
                   const dateKey = new Date(Date.now() - (29 - i) * 86400000).toISOString().split("T")[0];

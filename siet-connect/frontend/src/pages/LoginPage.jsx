@@ -4,7 +4,7 @@ import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 import useAuthStore from "../store/authStore.js";
 
-const FEATURES = ["📚 Academics", "💼 Placements", "🏫 Campus"];
+const FEATURES = ["Academics", "Placements", "Campus"];
 
 const LoginPage = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -58,7 +58,7 @@ const LoginPage = () => {
 
           {/* Tagline */}
           <p className="text-gray-400 text-base mt-2 tracking-wide">
-            ✨ Your campus, connected
+            Your campus, connected
           </p>
 
           {/* Feature Pills */}

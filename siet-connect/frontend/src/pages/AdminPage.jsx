@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   BarChart3, Users, Bell, FileText, Briefcase, BookOpen,
-  Search, Shield, Edit, Trash2, Plus, Send,
+  Search, Shield, Plus, Send,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import api from "../lib/axios.js";
@@ -11,7 +11,6 @@ import EmptyState from "../components/EmptyState.jsx";
 import ConfirmModal from "../components/ConfirmModal.jsx";
 
 const tabs = ["Overview", "Notices", "Placements", "Documents", "Users", "PYQs"];
-const tabEmojis = { "Overview": "📊", "Notices": "📢", "Placements": "💼", "Documents": "📄", "Users": "👥", "PYQs": "📝" };
 const tabSlugs = { "overview": "Overview", "notices": "Notices", "placements": "Placements", "documents": "Documents", "users": "Users", "pyqs": "PYQs" };
 const toSlug = (t) => t.toLowerCase();
 
@@ -27,8 +26,8 @@ const AdminPage = () => {
   useEffect(() => {
     if (tab && tabSlugs[tab]) {
       setActiveTab(tabSlugs[tab]);
-    } else if (!tab) {
-      navigate(`/admin/${toSlug("Overview")}`, { replace: true });
+    } else if (tab) {
+      navigate("/admin/overview", { replace: true });
     }
   }, [tab, navigate]);
   const switchTab = (t) => { setActiveTab(t); navigate(`/admin/${toSlug(t)}`, { replace: true }); };
@@ -162,16 +161,16 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-1 flex items-center gap-2">
-        <Shield size={24} className="text-accent" aria-hidden="true" /> 🛡️ Admin Panel
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <h1 className="text-xl sm:text-2xl font-bold mb-1 flex items-center gap-2">
+        <Shield size={22} className="text-accent" aria-hidden="true" /> Admin Panel
       </h1>
-      <p className="text-base-content/60 text-sm mb-6">⚙️ Manage notices, placements, documents, users, and PYQs</p>
+      <p className="text-base-content/60 text-xs sm:text-sm mb-4 sm:mb-6">Manage notices, placements, documents, users, and PYQs</p>
 
-      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-6 overflow-x-auto" role="tablist">
+      <div className="tabs tabs-boxed bg-base-200 rounded-2xl p-1 mb-4 sm:mb-6 overflow-x-auto whitespace-nowrap" role="tablist">
         {tabs.map((tab) => (
           <button key={tab} onClick={() => switchTab(tab)} className={`tab tab-sm sm:tab-md transition-all duration-200 ${activeTab === tab ? "tab-active !bg-accent !text-white rounded-xl" : ""}`} role="tab" aria-selected={activeTab === tab}>
-            {tabEmojis[tab]} {tab}
+            {tab}
           </button>
         ))}
       </div>
@@ -182,14 +181,14 @@ const AdminPage = () => {
           {loading ? <Spinner /> : !stats ? <EmptyState /> : (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[
-                { label: "👥 Total Users", val: stats.totalUsers, icon: Users, color: "text-accent" },
-                { label: "📢 Notices", val: stats.totalNotices, icon: Bell, color: "text-success" },
-                { label: "💼 Placements", val: stats.totalPlacements, icon: Briefcase, color: "text-warning" },
-                { label: "📝 PYQs", val: stats.totalPYQs, icon: BookOpen, color: "text-info" },
-                { label: "📄 Doc Requests", val: stats.totalDocuments, icon: FileText, color: "text-accent" },
-                { label: "⏳ Pending Docs", val: stats.pendingDocuments, icon: FileText, color: "text-error" },
-                { label: "🟢 Open Placements", val: stats.openPlacements, icon: Briefcase, color: "text-success" },
-                { label: "📊 Stats", val: "Live", icon: BarChart3, color: "text-accent" },
+                { label: "Total Users", val: stats.totalUsers, icon: Users, color: "text-accent" },
+                { label: "Notices", val: stats.totalNotices, icon: Bell, color: "text-success" },
+                { label: "Placements", val: stats.totalPlacements, icon: Briefcase, color: "text-warning" },
+                { label: "PYQs", val: stats.totalPYQs, icon: BookOpen, color: "text-info" },
+                { label: "Doc Requests", val: stats.totalDocuments, icon: FileText, color: "text-accent" },
+                { label: "Pending Docs", val: stats.pendingDocuments, icon: FileText, color: "text-error" },
+                { label: "Open Placements", val: stats.openPlacements, icon: Briefcase, color: "text-success" },
+                { label: "Stats", val: "Live", icon: BarChart3, color: "text-accent" },
               ].map((s, i) => (
                 <div key={i} className="card bg-base-200 rounded-2xl shadow text-center">
                   <div className="card-body p-4">
@@ -279,13 +278,13 @@ const AdminPage = () => {
               {documents.map((d) => (
                 <div key={d._id} className="card bg-base-200 rounded-2xl shadow">
                   <div className="card-body p-4">
-                    <div className="flex items-center justify-between gap-3">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div>
                         <p className="font-semibold">{d.requestedBy?.name} ({d.requestedBy?.studentId})</p>
                         <p className="text-sm text-accent">{d.docType} · {d.priority}</p>
                         <p className="text-xs text-base-content/60">{d.reason}</p>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className={`badge badge-sm ${d.status === "pending" ? "badge-warning" : d.status === "ready" ? "badge-success" : d.status === "rejected" ? "badge-error" : "badge-ghost"}`}>{d.status}</span>
                         {d.status === "pending" && (
                           <>

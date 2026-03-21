@@ -4,7 +4,7 @@ import { Mail, Lock, User, Layers, Hash, Eye, EyeOff, ArrowRight } from "lucide-
 import toast from "react-hot-toast";
 import useAuthStore from "../store/authStore.js";
 
-const FEATURES = ["📚 Academics", "💼 Placements", "🏫 Campus"];
+const FEATURES = ["Academics", "Placements", "Campus"];
 
 const SignupPage = () => {
   const [form, setForm] = useState({
@@ -58,12 +58,12 @@ const SignupPage = () => {
 
           {/* App Name */}
           <h1 className="text-2xl font-bold text-white tracking-tight font-serif">
-            🎓 Join SIET Connect
+            Join SIET Connect
           </h1>
 
           {/* Tagline */}
           <p className="text-gray-400 text-sm mt-1.5 tracking-wide">
-            ✨ Create your campus account
+            Create your campus account
           </p>
 
           {/* Feature Pills */}

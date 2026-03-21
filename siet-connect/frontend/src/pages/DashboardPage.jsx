@@ -72,36 +72,36 @@ const DashboardPage = () => {
 
   // Schedule mock data
   const todaySchedule = [
-    { time: "9:00 AM", subject: "🧪 Data Structures", room: "Lab 3", type: "Lab" },
-    { time: "11:00 AM", subject: "💻 Operating Systems", room: "Room 201", type: "Lecture" },
-    { time: "2:00 PM", subject: "🤖 Machine Learning", room: "Room 105", type: "Lecture" },
+    { time: "9:00 AM", subject: "Data Structures", room: "Lab 3", type: "Lab" },
+    { time: "11:00 AM", subject: "Operating Systems", room: "Room 201", type: "Lecture" },
+    { time: "2:00 PM", subject: "Machine Learning", room: "Room 105", type: "Lecture" },
   ];
 
   const quickActions = [
-    { label: "📝 PYQs", icon: Download, path: "/academics/pyqs", color: "bg-blue-500/20 text-blue-400" },
-    { label: "📖 Syllabus", icon: BookOpen, path: "/academics/syllabus", color: "bg-green-500/20 text-green-400" },
-    { label: "🎉 Events", icon: Calendar, path: "/campus/events", color: "bg-purple-500/20 text-purple-400" },
-    { label: "💼 Internships", icon: Briefcase, path: "/placements/opportunities", color: "bg-amber-500/20 text-amber-400" },
-    { label: "📄 Documents", icon: FileText, path: "/services/documents", color: "bg-rose-500/20 text-rose-400" },
-    { label: "🔔 Notices", icon: Bell, path: "/dashboard", color: "bg-cyan-500/20 text-cyan-400" },
+    { label: "PYQs", icon: Download, path: "/academics/pyqs", color: "bg-blue-500/20 text-blue-400" },
+    { label: "Syllabus", icon: BookOpen, path: "/academics/syllabus", color: "bg-green-500/20 text-green-400" },
+    { label: "Events", icon: Calendar, path: "/campus/events", color: "bg-purple-500/20 text-purple-400" },
+    { label: "Internships", icon: Briefcase, path: "/placements/opportunities", color: "bg-amber-500/20 text-amber-400" },
+    { label: "Documents", icon: FileText, path: "/services/documents", color: "bg-rose-500/20 text-rose-400" },
+    { label: "Notices", icon: Bell, path: "/dashboard", color: "bg-cyan-500/20 text-cyan-400" },
   ];
 
   const attendanceColor = user?.attendance >= 75 ? "text-success" : "text-error";
   const attendanceBg = user?.attendance >= 75 ? "bg-success/20" : "bg-error/20";
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
+    <div className="max-w-5xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
       {/* Greeting + Presence */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6">
         <div>
-          <h1 className="text-2xl font-bold">
-            Hello, {user?.name?.split(" ")[0]}! 👋
+          <h1 className="text-xl sm:text-2xl font-bold">
+            Hello, {user?.name?.split(" ")[0]}
           </h1>
-          <p className="text-base-content/60 text-sm mt-1">
-            {user?.branch} — Semester {user?.semester} | ID: {user?.studentId}
+          <p className="text-base-content/60 text-xs sm:text-sm mt-1">
+            {user?.branch} — Sem {user?.semester} | {user?.studentId}
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           {/* Live presence */}
           <div className="flex items-center gap-2 bg-base-200 rounded-xl px-3 py-2 text-sm">
             <span className="w-2 h-2 rounded-full bg-success animate-pulse" aria-hidden="true" />
@@ -127,7 +127,7 @@ const DashboardPage = () => {
         <div className="card bg-base-200 rounded-2xl shadow-lg" role="region" aria-label="Attendance tracker">
           <div className="card-body">
             <h2 className="font-semibold flex items-center gap-2">
-              <TrendingUp size={18} aria-hidden="true" /> 📊 Attendance
+              <TrendingUp size={18} aria-hidden="true" /> Attendance
             </h2>
             <div className="flex items-center justify-center py-4">
               <div className={`radial-progress ${attendanceColor}`} style={{ "--value": user?.attendance || 0, "--size": "7rem", "--thickness": "8px" }} role="progressbar" aria-valuenow={user?.attendance} aria-valuemin="0" aria-valuemax="100" aria-label={`Attendance: ${user?.attendance}%`}>
@@ -137,7 +137,7 @@ const DashboardPage = () => {
             {user?.attendance < 75 && (
               <div className={`flex items-center gap-2 ${attendanceBg} rounded-xl p-3 text-sm`}>
                 <AlertTriangle size={16} className="text-error" aria-hidden="true" />
-                <span className="text-error font-medium">⚠️ Below 75% — attendance shortage alert!</span>
+                <span className="text-error font-medium">Below 75% — attendance shortage alert!</span>
               </div>
             )}
           </div>
@@ -147,7 +147,7 @@ const DashboardPage = () => {
         <div className="card bg-base-200 rounded-2xl shadow-lg lg:col-span-2" role="region" aria-label="Today's schedule">
           <div className="card-body">
             <h2 className="font-semibold flex items-center gap-2">
-              <Clock size={18} aria-hidden="true" /> 📅 Today's Schedule
+              <Clock size={18} aria-hidden="true" /> Today's Schedule
             </h2>
             <div className="space-y-3 mt-2">
               {todaySchedule.map((item, i) => (
@@ -175,7 +175,7 @@ const DashboardPage = () => {
               className="w-20 h-24 rounded-xl object-cover shadow flex-shrink-0"
             />
             <div>
-              <h2 className="font-semibold">🎓 Director Principal's Message</h2>
+              <h2 className="font-semibold">Director Principal's Message</h2>
               <p className="text-sm text-base-content/60 mt-1 line-clamp-3">
                 "At SIET, we nurture engineers for Industry 4.0. Make the most of every opportunity —
                 connect, learn, and grow. This platform brings all of SIET together in one place."
@@ -187,8 +187,8 @@ const DashboardPage = () => {
 
       {/* Quick Actions */}
       <section className="mb-6" aria-labelledby="quick-actions-heading">
-        <h2 id="quick-actions-heading" className="font-semibold mb-3">⚡ Quick Actions</h2>
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+        <h2 id="quick-actions-heading" className="font-semibold mb-3">Quick Actions</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
           {quickActions.map((a, i) => (
             <Link key={i} to={a.path} className="flex flex-col items-center gap-2 bg-base-200 rounded-2xl p-4 hover:shadow-lg transition-all duration-200">
               <div className={`w-12 h-12 rounded-xl ${a.color} flex items-center justify-center`}>
@@ -204,7 +204,7 @@ const DashboardPage = () => {
       <section aria-labelledby="notices-heading">
         <div className="flex items-center justify-between mb-3">
           <h2 id="notices-heading" className="font-semibold flex items-center gap-2">
-            <Bell size={18} aria-hidden="true" /> 📢 Latest Notices
+            <Bell size={18} aria-hidden="true" /> Latest Notices
           </h2>
           <Link to="/academics" className="text-accent text-sm flex items-center gap-1 hover:underline">
             View all <ChevronRight size={14} />
@@ -252,7 +252,7 @@ const DashboardPage = () => {
       {/* Activity Heatmap placeholder */}
       <section className="mt-6" aria-labelledby="activity-heading">
         <h2 id="activity-heading" className="font-semibold mb-3 flex items-center gap-2">
-          <TrendingUp size={18} aria-hidden="true" /> 🔥 Activity Heatmap (30 Days)
+          <TrendingUp size={18} aria-hidden="true" /> Activity (30 Days)
         </h2>
         <div className="card bg-base-200 rounded-2xl shadow-lg">
           <div className="card-body">
