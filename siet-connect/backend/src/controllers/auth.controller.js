@@ -59,14 +59,6 @@ export const signup = async (req, res) => {
     res.status(500).json({ success: false, message: "Signup error" });
   }
 };
-        attendance: user.attendance,
-        activityMap: Object.fromEntries(user.activityMap),
-      },
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Server error during login" });
-  }
-};
 
 // Logout — clear cookie
 export const logout = (req, res) => {
